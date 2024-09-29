@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Company</title>
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 30px;
+			font-size: 20px;
+			line-height: 1.5;
+		}
+
+		#logo {
+
+			width: 94px;
+			margin-bottom: 10px;
+		}
+
+		header {
+			padding-bottom: 30px;
+		}
+
+		h1 {
+			margin-bottom: 9px;
+		}
+
+		h3 {
+			font-size: 30px;
+			font-weight: normal;
+			margin-bottom: 18px;
+			line-height: 38px;
+		}
+
+		.bio {
+			background: #f0f;
+			min-width: 200px;
+			max-width: 250px;
+			min-height: 200px;
+			max-height: 250px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+
+		.gallery {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+			gap: 22px 30px;
+		}
+
+		.gallery-item img {
+			width: 100%;
+			height: auto;
+			border-radius: 24px;
+			transition: transform 0.2s;
+		}
+
+		.gallery-item img:hover {
+			transform: scale(1.05);
+		}
+
+		.lightbox-overlay {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.8);
+			justify-content: center;
+			align-items: center;
+			z-index: 1000;
+		}
+
+		.lightbox-image {
+			max-width: 90%;
+			max-height: 90%;
+			border-radius: 8px;
+			margin: 100px auto;
+			display: block;
+		}
+
+		.close {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			color: white;
+			font-size: 40px;
+			cursor: pointer;
+			display: block;
+			text-align: center;
+			background: #000;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			vertical-align: middle;
+		}
+
+		footer {
+			margin-top: 30px;
+			padding-top: 20px;
+		}
+
+		#btn-email {
+			display: block;
+			z-index: 99;
+			font-weight: bold;
+			border-radius: 30px;
+			padding: 10px 20px;
+			background: #000;
+			color: #fff;
+			text-decoration: none;
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.lightbox').click(function (e) {
+				e.preventDefault();
+				const imgSrc = $(this).attr('href');
+				$('.lightbox-image').attr('src', imgSrc);
+				$('.lightbox-overlay').fadeIn();
+			});
+
+			$('.close').click(function () {
+				$('.lightbox-overlay').fadeOut();
+			});
+
+			$(document).click(function (event) {
+				if ($(event.target).is('.lightbox-overlay')) {
+					$('.lightbox-overlay').fadeOut();
+				}
+			});
+
+
+			var currentYear = new Date().getFullYear();
+			$('#year').text(currentYear);
+		});
+
+	</script>
+</head>
+
+<body>
+
+	<a id="btn-email" href="mailto:info@gmail.com">contact</a>
+
+	<header>
+		<img id="logo" src="img/icon.png" alt="">
+		<h1>Imagine-Image<small><sup>&trade;</sup></small></h1>
+		<h3 style="max-width:340px;">Creating visual content to meet your project needs.</h3>
+		<p>
+			The process begins with writing a description, followed by creating detailed drawings for confirmation, and
+			concluding with rendering image utilizing custom built AI (Artificial Intelligence) models.
+		</p>
+
+	</header>
+
+	<div class="gallery">
+		<div class="gallery-item">
+			<a href="img/1.jpg" class="lightbox">
+				<img src="img/th-1.jpg" alt="Image 1">
+			</a>
+		</div>
+		<div class="gallery-item">
+			<a href="img/2.jpg" class="lightbox">
+				<img src="img/th-2.jpg" alt="Image 2">
+			</a>
+		</div>
+		<div class="gallery-item">
+			<a href="img/3.jpg" class="lightbox">
+				<img src="img/th-3.jpg" alt="Image 3">
+			</a>
+		</div>
+		<div class="gallery-item">
+			<a href="img/4.jpg" class="lightbox">
+				<img src="img/th-4.jpg" alt="Image 4">
+			</a>
+		</div>
+		<div class="gallery-item">
+			<a href="img/5.jpg" class="lightbox">
+				<img src="img/th-5.jpg" alt="Image 5">
+			</a>
+		</div>
+		<div class="gallery-item">
+			<a href="img/6.jpg" class="lightbox">
+				<img src="img/th-6.jpg" alt="Image 6">
+			</a>
+		</div>
+
+
+
+
+
+
+
+
+	</div>
+
+	<div class="lightbox-overlay">
+		<span class="close">&times;</span>
+		<img class="lightbox-image" src="" alt="Lightbox Image">
+	</div>
+
+	<footer>
+		<h3 style="font-weight:bold;">Let's work together</h3>
+		<div class="gallery">
+			<div class="gallery-item">
+				<img src="img/bio.jpg" alt="" class="bio">
+			</div>
+		</div>
+
+		<p style="margin-bottom:20px;">
+			"Please send me an email! I'd love to hear about your project and see how I can help."
+
+			<b>&mdash; Joel Guerrero</b>
+		</p>
+
+		<small style="opacity:0.4;">&copy; <span id="year"></span> Imagine-Image. All rights reserved.</small>
+	</footer>
+</body>
+
+</html>
